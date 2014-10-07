@@ -13,12 +13,12 @@ This package uses `blinker`_ to dispatch signal.
 
 .. _blinker: https://pypi.python.org/pypi/blinker
 
-1. PreInsertSignal
-2. PostInsertSignal
-3. PreUpdateSignal
-4. PostUpdateSignal
-5. PreDeleteSignal
-6. PostDeleteSignal
+1. `PreInsertSignal`
+2. `PostInsertSignal`
+3. `PreUpdateSignal`
+4. `PostUpdateSignal`
+5. `PreDeleteSignal`
+6. `PostDeleteSignal`
 
 From about issue, there are some points of this package:
 
@@ -79,11 +79,13 @@ as decorator or use signal directly.
     def subscriber_for_model_a_post_insert(event):
         print(event)
 
+    # or
 
     @ModelA.PreInsertSignal.connect
     def subscriber_for_model_a_pre_insert(event):
         print(event)
 
+    # or
 
     def subscriber_for_model_a_pre_update(event):
         print(event)
@@ -130,3 +132,14 @@ are `ModelA1` and `ModelA2`.
 
 Whenever ModelA1's signal get fired, the same kind signal of `ModelA` (base
 classes of `ModelA1`) get fired, too.
+
+
+-------------------
+Why is it limitted?
+-------------------
+
+Just because of:
+
+1. No signals for blink updates.
+2. Is designed for a small of use cases.
+3. Developer has to care about batch themselves.
